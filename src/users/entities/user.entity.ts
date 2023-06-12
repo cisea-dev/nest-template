@@ -1,7 +1,17 @@
-import {Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, DeleteDateColumn} from 'typeorm';
+import {
+    Entity,
+    Column,
+    PrimaryGeneratedColumn,
+    CreateDateColumn,
+    UpdateDateColumn,
+    DeleteDateColumn,
+    Index,
+    Unique
+} from 'typeorm';
 import now = jest.now;
 
 @Entity()
+@Unique(["username", "email"])
 export class User {
     @PrimaryGeneratedColumn()
     id: number;
@@ -30,7 +40,7 @@ export class User {
     @UpdateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)", onUpdate: "CURRENT_TIMESTAMP(6)" })
     public updated_at: Date;
 
-    @DeleteDateColumn({ type: "timestamp"})
+    @DeleteDateColumn({ type: "timestamp", default: () => null})
     deleted_at: Date;
 
     @Column({ default: true })

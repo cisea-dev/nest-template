@@ -50,7 +50,13 @@ export class UsersService {
   }
 
   async findOne(username: string) {
-    return this.users.find(user => user.username === username);
+    // return this.users.find(user => user.username === username);
+    return await this.usersRepository.findOne({
+      select: ['firstName', 'lastName', 'username', 'email', 'password', 'image'],
+      where: [
+        {username},
+      ],
+    });
   }
 
   update(username: string, updateUserDto: UpdateUserDto) {
