@@ -8,7 +8,6 @@ import {
     Index,
     Unique
 } from 'typeorm';
-import now = jest.now;
 
 @Entity()
 @Unique(["username", "email"])
