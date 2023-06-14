@@ -8,7 +8,12 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import configuration from "./config/configuration";
 import {User} from "./users/entities/user.entity";
+<<<<<<< HEAD
 import {RouterModule} from "@nestjs/core";
+=======
+import { CaslModule } from './casl/casl.module';
+
+>>>>>>> 9d5a5e95fab2128f681f6690d5d8627bfb0aa333
 @Module({
   imports: [
       UsersModule,
@@ -38,6 +43,7 @@ import {RouterModule} from "@nestjs/core";
           migrations: [/*...*/],
           migrationsTableName: "custom_migration_table",
       }),
+    //   CaslModule,
   ],
   controllers: [
       AppController,

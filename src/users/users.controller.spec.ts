@@ -5,8 +5,8 @@ import { UsersService } from './users.service';
 import now = jest.now;
 
 const createUserDto: CreateUserDto = {
-  firstName: 'firstName #1',
-  lastName: 'lastName #1',
+  firstname: 'firstName #1',
+  lastname: 'lastName #1',
   username: 'username #1',
   email: 'email #1',
   password: 'password #1',
@@ -32,16 +32,16 @@ describe('UsersController', () => {
                 ),
             findAll: jest.fn().mockResolvedValue([
               {
-                firstName: 'firstName #1',
-                lastName: 'lastName #1',
+                firstname: 'firstname #1',
+                lastname: 'lastname #1',
                 username: 'username #1',
                 email: 'email #1',
                 password: 'password #1',
                 image: 'image #1',
               },
               {
-                firstName: 'firstName #2',
-                lastName: 'lastName #2',
+                firstname: 'firstname #2',
+                lastname: 'lastname #2',
                 username: 'username #2',
                 email: 'email #2',
                 password: 'password #2',
@@ -50,8 +50,8 @@ describe('UsersController', () => {
             ]),
             findOne: jest.fn().mockImplementation((id: string) =>
                 Promise.resolve({
-                  firstName: 'firstName #1',
-                  lastName: 'lastName #1',
+                  firstname: 'firstname #1',
+                  lastname: 'lastname #1',
                   username: 'username #1',
                   email: 'email #1',
                   password: 'password #1',
@@ -94,8 +94,8 @@ describe('UsersController', () => {
   describe('findOne()', () => {
     it('should find a user', () => {
       expect(usersController.findOne('john')).resolves.toEqual({
-        firstName: 'firstName #1',
-        lastName: 'lastName #1',
+        firstName: 'firstname #1',
+        lastName: 'lastname #1',
         username: 'username #1',
         email: 'email #1',
         password: 'password #1',

@@ -14,6 +14,7 @@ export class UsersService {
       private dataSource: DataSource
   ) {}
 
+<<<<<<< HEAD
   private readonly users = [
     {
       firstname: 'John',
@@ -34,6 +35,8 @@ export class UsersService {
   ];
 
 
+=======
+>>>>>>> 9d5a5e95fab2128f681f6690d5d8627bfb0aa333
   create(createUserDto: CreateUserDto): Promise<User> {
     const user = new User();
     user.firstname = createUserDto.firstname;
