@@ -13,6 +13,8 @@ import { RouterModule } from '@nestjs/core';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { ThrottlerGuard } from '@nestjs/throttler/dist/throttler.guard';
 import {APP_GUARD} from '@nestjs/core';
+import { EventsGateway } from './events/events.gateway';
+import { EventsModule } from './events/events.module';
 @Module({
   imports: [
       UsersModule,
@@ -47,6 +49,7 @@ import {APP_GUARD} from '@nestjs/core';
           migrations: [/*...*/],
           migrationsTableName: "custom_migration_table",
       }),
+      EventsModule,
     //   CaslModule,
   ],
   controllers: [
@@ -57,7 +60,8 @@ import {APP_GUARD} from '@nestjs/core';
     {
     provide: APP_GUARD,
     useClass: ThrottlerGuard
-    }
+    },
+    EventsGateway
 ],
 })
 export class AppModule {}
