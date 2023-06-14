@@ -14,29 +14,6 @@ export class UsersService {
       private dataSource: DataSource
   ) {}
 
-<<<<<<< HEAD
-  private readonly users = [
-    {
-      firstname: 'John',
-      lastname: 'Mayer',
-      username: 'john-mayer',
-      email: 'john@mayer.com',
-      password: 'john',
-      image: 'john.img',
-    },
-    {
-      firstname: 'Maria',
-      lastname: 'Vania',
-      username: 'mariavania',
-      email: 'maria@vania.com',
-      password: 'john',
-      image: 'john.img',
-    },
-  ];
-
-
-=======
->>>>>>> 9d5a5e95fab2128f681f6690d5d8627bfb0aa333
   create(createUserDto: CreateUserDto): Promise<User> {
     const user = new User();
     user.firstname = createUserDto.firstname;

@@ -29,7 +29,7 @@ export class AppController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get()
+  @Get('indexhbs')
   @Render('index.hbs')
   root() {
     return { message: 'Hello world!' };

@@ -8,12 +8,11 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import configuration from "./config/configuration";
 import {User} from "./users/entities/user.entity";
-<<<<<<< HEAD
-import {RouterModule} from "@nestjs/core";
-=======
 import { CaslModule } from './casl/casl.module';
-
->>>>>>> 9d5a5e95fab2128f681f6690d5d8627bfb0aa333
+import { RouterModule } from '@nestjs/core';
+import { ThrottlerModule } from '@nestjs/throttler';
+import { ThrottlerGuard } from '@nestjs/throttler/dist/throttler.guard';
+import {APP_GUARD} from '@nestjs/core';
 @Module({
   imports: [
       UsersModule,
@@ -30,6 +29,11 @@ import { CaslModule } from './casl/casl.module';
               // load: [configuration],
           }
       ),
+
+      ThrottlerModule.forRoot({
+        ttl: 60,
+        limit: 10,
+      }),
       TypeOrmModule.forRoot({
           type: 'mysql',
           host: 'localhost',
@@ -49,6 +53,11 @@ import { CaslModule } from './casl/casl.module';
       AppController,
       UsersController
   ],
-  providers: [AppService],
+  providers: [AppService,
+    {
+    provide: APP_GUARD,
+    useClass: ThrottlerGuard
+    }
+],
 })
 export class AppModule {}
