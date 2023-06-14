@@ -1,7 +1,7 @@
-import {Controller, Get, Post, Body, Patch, Param, Delete, UseGuards} from '@nestjs/common';
-import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import {Body, Controller, Delete, Get, HttpStatus, Param, ParseIntPipe, Patch, Post, UseGuards} from '@nestjs/common';
+import {UsersService} from './users.service';
+import {CreateUserDto} from './dto/create-user.dto';
+import {UpdateUserDto} from './dto/update-user.dto';
 import {JwtAuthGuard} from "../auth/jwt-auth.guard";
 
 @UseGuards(JwtAuthGuard)
@@ -22,6 +22,11 @@ export class UsersController {
   @Get(':username')
   findOne(@Param('username') username: string) {
     return this.usersService.findOne(username);
+  }
+
+  @Get('/id')
+  findOneId(@Param('id', new ParseIntPipe({errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE})) id: number) {
+    return this.usersService.findOneId(id);
   }
 
   @Patch(':username')

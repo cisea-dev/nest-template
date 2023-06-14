@@ -8,11 +8,17 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import configuration from "./config/configuration";
 import {User} from "./users/entities/user.entity";
-
+import {RouterModule} from "@nestjs/core";
 @Module({
   imports: [
       UsersModule,
       AuthModule,
+      RouterModule.register([
+          {
+              path: 'users',
+              module: UsersModule,
+          },
+      ]),
       ConfigModule.forRoot(
           {
               isGlobal: true,
@@ -29,6 +35,8 @@ import {User} from "./users/entities/user.entity";
           entities: [User],
           autoLoadEntities: true,
           synchronize: true,
+          migrations: [/*...*/],
+          migrationsTableName: "custom_migration_table",
       }),
   ],
   controllers: [
