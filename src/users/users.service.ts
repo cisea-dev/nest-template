@@ -14,30 +14,10 @@ export class UsersService {
       private dataSource: DataSource
   ) {}
 
-  private readonly users = [
-    {
-      firstName: 'John',
-      lastName: 'Mayer',
-      username: 'john-mayer',
-      email: 'john@mayer.com',
-      password: 'john',
-      image: 'john.img',
-    },
-    {
-      firstName: 'Maria',
-      lastName: 'Vania',
-      username: 'mariavania',
-      email: 'maria@vania.com',
-      password: 'john',
-      image: 'john.img',
-    },
-  ];
-
-
   create(createUserDto: CreateUserDto): Promise<User> {
     const user = new User();
-    user.firstName = createUserDto.firstName;
-    user.lastName = createUserDto.lastName;
+    user.firstname = createUserDto.firstname;
+    user.lastname = createUserDto.lastname;
     user.username = createUserDto.username;
     user.email = createUserDto.email;
     user.password = createUserDto.password;
@@ -52,7 +32,7 @@ export class UsersService {
   async findOne(username: string) {
     // return this.users.find(user => user.username === username);
     return await this.usersRepository.findOne({
-      select: ['firstName', 'lastName', 'username', 'email', 'password', 'image'],
+      select: ['firstname', 'lastname', 'username', 'email', 'password', 'image'],
       where: [
         {username},
       ],

@@ -8,6 +8,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import configuration from "./config/configuration";
 import {User} from "./users/entities/user.entity";
+import { CaslModule } from './casl/casl.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import {User} from "./users/entities/user.entity";
           autoLoadEntities: true,
           synchronize: true,
       }),
+    //   CaslModule,
   ],
   controllers: [
       AppController,
