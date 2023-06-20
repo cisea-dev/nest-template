@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@casl/ability": "^6.5.0",
+    "@fastify/csrf-protection": "^6.3.0",
     "@fastify/helmet": "^10.1.1",
     "@fastify/static": "^6.10.2",
     "@fastify/view": "^7.4.1",
